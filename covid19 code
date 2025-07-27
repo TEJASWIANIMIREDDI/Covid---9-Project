@@ -1,0 +1,20 @@
+data=pd.read_csv('/country_wise_latest.csv')
+data
+data.count()  #no. of non-null values for each column
+data.isnull().sum()   #sum of null values from each column
+sns.heatmap(data.isnull())        #plt the null values for columns
+plt.show()
+data.groupby("Country/Region").sum().head(10)
+data.groupby("Country/Region")["Confirmed"].sum().sort_values(ascending=False)
+data.groupby("Country/Region")[["Confirmed","Deaths"]].sum().sort_values("Confirmed",ascending=False)
+data.Confirmed<20 #return boolean which satisfy the given contition
+data[data.Confirmed<20] #return the data whith <20 confirmed cases
+data[~(data.Confirmed<20)]  #removed rows which satisfy given condition here if we observe total rows=187,after removing rows which satisfy condtion total rows=182
+data.groupby("Country/Region")["Confirmed"].sum().sort_values(ascending=False).head(10) #return max 10 confirmed cases
+data.groupby("Country/Region")["Confirmed"].sum().sort_values(ascending=True).head(10) #return min 10 confirmed cases
+data.groupby("Country/Region")["Deaths"].sum().sort_values(ascending=False).head(10) # #return max 10 death cases
+data.groupby("Country/Region")["Deaths"].sum().sort_values(ascending=True).head(20) # #return min 20 death cases
+data['Country/Region']=="India"  #return boolean for the given condition
+data[data['Country/Region']=="India"] #return the row which satisfy this condition
+data.sort_values(by="Confirmed",ascending=True).head(30) #sort the entir data based on confirmation
+data.sort_values(by=['Recovered'],ascending=False).head(20) #reverse sort entir data based on recovered data
